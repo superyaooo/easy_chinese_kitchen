@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+      
+
+
+<div class="container">
+    
+    <div class="row" id="content-sidebar-wrap">
+        <div class="col-md-6 col-md-offset-1 col-sm-8" id="content">
+            <img src="{{recipe.img_url}}" class="img-responsive" id="recipe-img" alt="finished dish"> 
+
+            <br>
+            
+            {{ recipe.content|safe }}
+
+
+        </div>
+        
+       
+        <div class="col-md-4 col-md-offset-1 col-sm-4" id="sidebar">
+            <h3>{{ recipe.title }}</h3>
+            <h6><span class="glyphicon glyphicon-calendar"></span> {{ recipe.pub_date }}</h6>
+            <p id="description"><em>{{ recipe.description }}</em></p>
+        </div>
+
+    </div>
+    
+    <div class="pull-right">
+        <a href="#" class="back-to-top btn btn-sm btn-default">
+            <span class="glyphicon glyphicon-arrow-up"></span>
+            Back to Top
+        </a>
+    </div>
+    
+</div>
+
+
+
+
+{% endblock %}
+
+

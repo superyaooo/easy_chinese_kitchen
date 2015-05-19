@@ -1,0 +1,43 @@
+{% extends "admin/admin-base.html" %}
+{% block content %}
+
+
+    <div class="header">
+        <br>
+        <ul class="nav nav-tabs admin-nav">
+            <li><a href="{{url_for('admin')}}" >Admin</a></li>
+            <li class="active"><a href="{{url_for('show_imgs')}}" >Manage Images</a></li>
+            <li><a href="{{url_for('index')}}" >Easy Chinese Kitchen</a></li>
+            
+            <!-- add another msg flash for ease of notice -->
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-info col-md-6 col-sm-6" role="alert">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    {{ message }}
+                </div>
+            {% endfor %}
+            
+            <li class="pull-right" ><a href="{{url_for('logout')}}">Log out</a></li>
+        </ul>
+    </div>  
+
+
+<br>
+<br>
+            
+
+
+    {% for img in imgs %}
+
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <img src="/static/img/upload_img/{{img}}" style="height:100px; width:100px;">
+                <a class="btn btn-sm btn-danger" href="{{ url_for('remove_img', img=img) }}">delete</a>
+                <hr>
+            </div>
+
+    {% endfor %}
+
+
+
+
+{% endblock %}

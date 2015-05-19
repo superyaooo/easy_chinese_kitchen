@@ -1,0 +1,55 @@
+{% extends "admin/admin-base.html" %}
+{% block content %}
+            
+
+    <h1 class="page-header">Edit Entry</h1>
+    
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        <span class="sr-only">Error:</span>
+                        {{ error }}
+                </div>
+            {% endif %}   
+    
+        <form method="post" enctype="multipart/form-data" >
+            <div class="row">   
+                <div class="form-group col-sm-5 col-md-5">       
+                    <label class="control-label"><h4>Title:</h4></label>
+                    <textarea class="form-control" name="title" rows="1">{{ recipe.title }} </textarea>
+                </div> 
+                <div class="col-sm-4 col-md-4">
+                    <h4>Date:</h4>
+                    <textarea class="form-control" name="pub_date" rows="1">{{ recipe.pub_date }} </textarea>
+                </div>
+                
+            </div> 
+              
+            <div class="row">
+                <div class="col-sm-5 col-md-5"> 
+                    <h4>Description:</h4>
+                    <textarea name="description" class="form-control" rows="2">{{ recipe.description }}</textarea>
+                    <h4>Choose a new picture. </h4>        
+                    <input type="file" name="file" class="btn btn-primary btn-sm"> 
+                    <img src="{{recipe.img_url}}" style="height: 260px; width: 260px;">
+                </div>
+                
+                
+                <div class="form-group col-sm-7 col-md-7">  
+                    <label class="control-label"><h4>Content:</h4></label>
+                    <textarea class="form-control" name="content" id="edit"> {{ recipe.content|safe }} </textarea>
+                    <br>
+                    <button type="submit" class="btn btn-sm btn-info">Submit</button>
+                    <a type="submit" class="btn btn-sm btn-default" href="{{ url_for('admin') }}">Never Mind</a>
+                </div>
+
+            </div>
+
+        </form>
+    
+
+
+
+
+
+{% endblock %}

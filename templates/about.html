@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+      
+      
+    
+<div class="container aboutme">
+    <div class="row">
+        <div class="col-md-4 col-xs-3">
+            <img src="../static/img/aboutwebsite.JPG" alt="aboutwebsite" class="img-responsive">
+        </div>
+
+        <div class="col-md-8 col-xs-9 ">
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        <span class="sr-only">Error:</span>
+                        {{ error }}
+                    </div>
+                {% endif %}
+                                
+                {% for message in get_flashed_messages() %}
+                    <div class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            
+            <h3>About This Site</h3>
+            <p>Fancy some Chinese food but tired of Chinese restaurants?</p>
+            <p>Want to cook authentic Chinese food in your own kitchen?</p>
+            <p>Good news, you've come to the right place!</p>
+            <a href="#contact" data-toggle="modal" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-envelope"></span> Contact Me</a>
+        </div>
+    </div>
+        
+    <hr>
+    <div class="row">
+        <div class="col-md-9 col-xs-9">
+            <h3>About The Cook</h3>
+            <p>Just another Chinese who lives abroad and misses homemade Chinese food.</p>
+            <p>I built this website to motivate myself to cook more often.</p>
+            <p><span class="glyphicon glyphicon-hand-right"></span><a href="http://yaowangdev.com"><em> My Website</em></a></p>
+            <p><span class="glyphicon glyphicon-hand-right"></span><a href="http://brokentoystory.yaowangdev.com"><em> My Dog and His Toys</em></a></p>
+        </div>
+        <div class="col-md-3 col-xs-3 ">
+            <img src="../static/img/aboutme.JPG" alt="aboutme" class="img-responsive">
+        </div>    
+    </div>
+    
+    
+</div>
+
+
+    
+
+
+{% endblock %}
+
