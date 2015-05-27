@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, redirect, request, session, flash
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.bcrypt import Bcrypt
 from functools import wraps
 import os
 from werkzeug import secure_filename
@@ -10,6 +11,7 @@ POSTS_PER_PAGE_ADMIN = 4
 
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 # DEBUG in testing. Change to False before deploy.
 DEBUG = True
 app.secret_key = "IT'S A SECRET"
@@ -90,14 +92,18 @@ def about():
     return render_template('about.html', error=error)
 
     
-
+#hash username and password during login
 @app.route('/login', methods=['GET','POST'])
 def login():
     error = None
+    
     if request.method=='POST':
-        if request.form['username']!= 'admin':
+        pw_hash = bcrypt.generate_password_hash('admin', 10)
+        usn_hash = bcrypt.generate_password_hash('admin', 10)
+        
+        if not bcrypt.check_password_hash(usn_hash, request.form['username']):
             error = 'Invalid username. Please try again.'
-        elif request.form['password']!= 'admin':
+        elif not bcrypt.check_password_hash(pw_hash, request.form['password']):
             error = 'Invalid password. Please try again.'
         else:
             session['logged_in'] = True
