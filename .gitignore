@@ -3,3 +3,4 @@ passenger_wsgi.py
 *.pyc
 *.db
 desktop.ini
+.DS_Store
